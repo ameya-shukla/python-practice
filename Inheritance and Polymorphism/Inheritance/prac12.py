@@ -1,0 +1,75 @@
+#Python program using classes and objects for displaying student,
+#teacher and HOD information(id, name, ,address, marks, salary, dept).
+#Using inheritance
+#Multilevel Inheritance
+
+#Class
+class Person:
+    def __init__(self,id, name,address):
+        self.id = id
+        self.name = name
+        self.address = address
+
+    #Instance method
+    def show_person_info(self):
+        print("ID:", self.id)
+        print("Name:", self.name)
+        print("Address:", self.address)
+
+
+
+
+#Inheritance
+class Student(Person):      # deriving a sub-class(Student) to inherit from the
+                            # base-class(Person)
+    def __init__(self,id,name,address,marks):
+        super().__init__(id,name,address)   #Inherits the instance variables from the base-class(Person)
+        self.marks = marks      #Defining variable of the derived class
+
+    def show_student_info(self):
+        super().show_person_info()      #Inherits the instance method from the base-class(Person)
+        print("Marks:", self.marks)
+
+
+
+class Teacher(Student):
+    def __init__(self, id, name, address, marks,salary):
+        super().__init__(id, name, address, marks)
+        self.salary = salary
+
+
+    def show_teacher_info(self):
+        super().show_student_info()
+        raw_text = u"\u20B9"  # Rupee Symbol
+        print("Salary:",raw_text,self.salary)
+
+
+
+
+class Hod(Teacher):
+    def __init__(self,id,name,address,marks,salary,dept):
+        super().__init__(id,name,address,marks,salary)
+        self.dept = dept
+
+    def show_hod_info(self):
+        super().show_teacher_info()
+        print("Department:", self.dept)
+        print("\t")
+
+
+
+
+
+# Object:
+#Instantiation (process of creating an object)
+s1 = Hod(1 ,'Amit', 'Mumbai', 98, 10000, 'CIVIL')
+s1.show_hod_info() #calls the show() function
+
+s2 = Hod(2, 'Sumit', 'Thane', 87, 12000, 'EXTC')
+s2.show_hod_info()
+
+s3 = Hod(3, 'Rohit', 'Dombivali', 76, 15000, 'IT')
+s3.show_hod_info()
+
+s4 = Hod(4, 'Mohit', 'Mulund',67, 8000, 'ELECTRONICS')
+s4.show_hod_info()
